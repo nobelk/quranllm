@@ -1,2 +1,13 @@
-# quranllm
-LLM-powered search for Al Quran
+# README
+
+## Install openai keys
+
+```bash
+npm i dotenv
+```
+
+## Run example agent
+
+```bash
+npx tsx example.ts
+```

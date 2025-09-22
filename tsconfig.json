@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    // Essential for module resolution
+    "moduleResolution": "bundler", // or "nodenext" | "node16" | "node"
+
+    // Required for Web Stream API support
+    "lib": ["DOM.AsyncIterable"],
+
+    // Recommended for better compatibility
+    "target": "es2020",
+    "module": "esnext"
+  }
+}

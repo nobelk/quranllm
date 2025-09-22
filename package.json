@@ -1,0 +1,29 @@
+{
+  "name": "quranllm",
+  "version": "0.1.0",
+  "description": "LLM-powered RAG of Quran",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx tsx example.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dr. Nobel Khandaker",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@llamaindex/huggingface": "^0.1.30",
+    "@llamaindex/openai": "^0.4.20",
+    "@llamaindex/pinecone": "^0.1.22",
+    "@llamaindex/readers": "^3.1.21",
+    "@llamaindex/workflow": "^1.1.24",
+    "@pinecone-database/pinecone": "^6.1.2",
+    "dotenv": "^17.2.2",
+    "i": "^0.3.7",
+    "llamaindex": "^0.12.0",
+    "npm": "^11.6.0",
+    "zod": "^4.1.11"
+  }
+}
