@@ -1,6 +1,6 @@
-import { loadAndIndexData } from './src/core/index';
-import { queryData } from './src/core/query';
-import { getConfig, initializeSettings } from './src/utils/config';
+import { loadAndIndexData } from '@/core';
+import { queryData } from '@/core/query';
+import { getConfig, initializeSettings } from '@/utils/config';
 import yoctoSpinner from 'yocto-spinner';
 
 async function main() {
