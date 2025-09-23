@@ -1,7 +1,7 @@
 {
   "name": "quranllm",
   "version": "0.1.0",
-  "description": "LLM-powered RAG of Quran",
+  "description": "LLM-powered Q&A service for Al-Quran",
   "main": "index.js",
   "scripts": {
     "start": "npx tsx example.ts",

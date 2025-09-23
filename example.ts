@@ -10,12 +10,14 @@ async function main() {
     const index = await loadAndIndexData(config, { shouldIndex: false });
 
     let query = "What is the first verse of al-fatiha?";
-    let spinner = yoctoSpinner({text: query}).start();
+    console.log("Question: " + query)
+    let spinner = yoctoSpinner({text: "Answer: "}).start();
     let answer = await queryData(index, query);
     spinner.success(answer);
 
     query = "Which path do we seek according to al-fatiha?"
-    spinner = yoctoSpinner({text: query}).start();
+    console.log("Question: " + query)
+    spinner = yoctoSpinner({text: "Answer: "}).start();
     answer = await queryData(index, query);
     spinner.success(answer);
 }

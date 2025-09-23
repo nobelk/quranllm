@@ -4,7 +4,7 @@ import {
     storageContextFromDefaults,
 } from "llamaindex";
 import { PineconeVectorStore } from '@llamaindex/pinecone';
-import { QuranRAGConfig, IndexingOptions } from "../types";
+import { QuranRAGConfig, IndexingOptions } from "@/types";
 
 export async function loadAndIndexData(
   config: QuranRAGConfig,
@@ -24,7 +24,7 @@ export async function loadAndIndexData(
     const storageContext = await storageContextFromDefaults({ vectorStore });
     index = await VectorStoreIndex.fromDocuments(documents, { storageContext });
   } else {
-    index = VectorStoreIndex.fromVectorStore(vectorStore);
+    index = await VectorStoreIndex.fromVectorStore(vectorStore);
   }
 
   return index;
