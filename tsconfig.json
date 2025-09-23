@@ -8,6 +8,17 @@
 
     // Recommended for better compatibility
     "target": "es2020",
-    "module": "esnext"
+    "module": "esnext",
+
+    // Path mapping for src directory
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/core/*": ["src/core/*"],
+      "@/services/*": ["src/services/*"],
+      "@/types/*": ["src/types/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/workflows/*": ["src/workflows/*"]
+    }
   }
 }

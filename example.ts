@@ -1,61 +1,23 @@
-import { OpenAI, OpenAIEmbedding } from "@llamaindex/openai";
-import { SimpleDirectoryReader } from "@llamaindex/readers/directory";
-import {
-    Settings,
-    VectorStoreIndex,
-    storageContextFromDefaults,
-} from "llamaindex"
-import 'dotenv/config'
-
-import { PineconeVectorStore } from '@llamaindex/pinecone';
-
-
-async function loadAndIndexData() {
-    const indexName = "quranllm-spike"; // Replace with your index name
-
-    const vectorStore = new PineconeVectorStore({
-        indexName,
-        apiKey: process.env.PINECONE_API_KEY as string,
-    });
-
-    const documents = await new SimpleDirectoryReader().loadData({ directoryPath: './data' });
-
-    const storageContext = await storageContextFromDefaults({ vectorStore });
-    const index = await VectorStoreIndex.fromDocuments(documents, { storageContext });
-
-    return index;
-}
-
-
-async function queryData(index: VectorStoreIndex, query: string) {
-    const retriever = index.asRetriever();
-    const nodes = await retriever.retrieve(query);
-    // Process retrieved nodes for RAG or other applications
-    console.log(nodes);
-}
+import { loadAndIndexData } from './src/core/index';
+import { queryData } from './src/core/query';
+import { getConfig, initializeSettings } from './src/utils/config';
+import yoctoSpinner from 'yocto-spinner';
 
 async function main() {
-    // the rest of your code goes here
-    // set LLM and the embedding model
-    Settings.llm = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY,
-        model: "gpt-4o",
-    })
-    Settings.embedModel = new OpenAIEmbedding({
-        apiKey: process.env.OPENAI_API_KEY,
-        model: "text-embedding-ada-002",
-    })
+    const config = getConfig();
+    initializeSettings(config);
 
-    // set up logging
-    Settings.callbackManager.on("llm-tool-call", (event) => {
-        console.log(event.detail)
-    })
-    Settings.callbackManager.on("llm-tool-result", (event) => {
-        console.log(event.detail)
-    })
+    const index = await loadAndIndexData(config, { shouldIndex: false });
 
-    const index = await loadAndIndexData();
-    await queryData(index, "What is the first verse of alfatiha?")
+    let query = "What is the first verse of al-fatiha?";
+    let spinner = yoctoSpinner({text: query}).start();
+    let answer = await queryData(index, query);
+    spinner.success(answer);
+
+    query = "Which path do we seek according to al-fatiha?"
+    spinner = yoctoSpinner({text: query}).start();
+    answer = await queryData(index, query);
+    spinner.success(answer);
 }
 
 
