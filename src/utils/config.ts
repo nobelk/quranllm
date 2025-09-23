@@ -1,14 +1,14 @@
 import { OpenAI, OpenAIEmbedding } from "@llamaindex/openai";
 import { Settings } from "llamaindex";
 import 'dotenv/config';
-import { QuranRAGConfig } from "../types";
+import { QuranRAGConfig } from "@/types";
 
 export function getConfig(): QuranRAGConfig {
   return {
     indexName: "quranllm-spike",
     pineconeApiKey: process.env.PINECONE_API_KEY as string,
     openaiApiKey: process.env.OPENAI_API_KEY as string,
-    llmModel: "gpt-4o",
+    llmModel: "gpt-4.1-nano",
     embeddingModel: "text-embedding-ada-002",
     dataDirectory: './data'
   };

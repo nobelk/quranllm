@@ -1,5 +1,5 @@
 import { OpenAI, OpenAIEmbedding } from "@llamaindex/openai";
-import { QuranRAGConfig } from "../types";
+import { QuranRAGConfig } from "@/types";
 
 export function createOpenAILLM(config: QuranRAGConfig): OpenAI {
   return new OpenAI({
