@@ -1,14 +1,41 @@
 {
   "compilerOptions": {
-    // Essential for module resolution
-    "moduleResolution": "bundler", // or "nodenext" | "node16" | "node"
-
-    // Required for Web Stream API support
-    "lib": ["DOM.AsyncIterable"],
-
-    // Recommended for better compatibility
-    "target": "es2020",
+    // Target and module for Node.js 24.8
+    "target": "es2022",
     "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["es2022", "DOM.AsyncIterable"],
+
+    // Strict mode for better type safety
+    "strict": true,
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+
+    // NestJS decorator support
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    // Output configuration
+    "outDir": "./dist",
+    "removeComments": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+
+    // Module resolution
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
 
     // Path mapping for src directory
     "baseUrl": ".",
@@ -20,5 +47,13 @@
       "@/utils/*": ["src/utils/*"],
       "@/workflows/*": ["src/workflows/*"]
     }
-  }
+  },
+  "include": [
+    "src/**/*",
+    "example.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
