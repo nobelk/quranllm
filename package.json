@@ -3,13 +3,33 @@
   "version": "0.1.0",
   "description": "LLM-powered Q&A service for Al-Quran",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "quran",
+    "llm",
+    "rag",
+    "qa",
+    "llamaindex",
+    "pinecone",
+    "openai"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nobelkhandaker/quranllm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nobelkhandaker/quranllm/issues"
+  },
+  "homepage": "https://github.com/nobelkhandaker/quranllm#readme",
   "scripts": {
     "build": "tsc",
-    "start": "npm run build && node dist/example.js",
-    "start:server": "npm run build && node dist/main.js",
-    "start:prod": "NODE_ENV=production node dist/main.js",
-    "dev": "npx tsx src/main.ts",
+    "example": "npm run build && node dist/example.js",
     "dev:example": "npx tsx example.ts",
     "watch": "tsc --watch",
     "clean": "rm -rf dist",
@@ -19,7 +39,8 @@
     "format:check": "prettier --check src/**/*.ts",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "prepublishOnly": "npm run build"
   },
   "author": "Dr. Nobel Khandaker",
   "license": "Apache-2.0",
@@ -40,15 +61,9 @@
     "@llamaindex/pinecone": "^0.1.22",
     "@llamaindex/readers": "^3.1.21",
     "@llamaindex/workflow": "^1.1.24",
-    "@nestjs/common": "^11.1.6",
-    "@nestjs/core": "^11.1.6",
-    "@nestjs/platform-express": "^11.1.6",
-    "@nestjs/terminus": "^11.0.0",
     "@pinecone-database/pinecone": "^6.1.2",
     "dotenv": "^17.2.2",
     "llamaindex": "^0.12.0",
-    "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.2",
     "yocto-spinner": "^1.0.0",
     "zod": "^4.1.11"
   }

@@ -1,5 +1,5 @@
 import { Settings } from "llamaindex";
-import { RAGAgentOptions } from "../types";
+import { RAGAgentOptions } from "../types/index.js";
 
 export async function ragAgent(options: RAGAgentOptions): Promise<string> {
   const context = options.nodes

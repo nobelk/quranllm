@@ -19,9 +19,6 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
 
-    // NestJS decorator support
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
 
     // Output configuration
     "outDir": "./dist",

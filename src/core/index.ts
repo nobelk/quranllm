@@ -4,7 +4,7 @@ import {
     storageContextFromDefaults,
 } from "llamaindex";
 import { PineconeVectorStore } from '@llamaindex/pinecone';
-import { QuranRAGConfig, IndexingOptions } from "@/types";
+import { QuranRAGConfig, IndexingOptions } from "../types/index.js";
 
 export async function loadAndIndexData(
   config: QuranRAGConfig,
