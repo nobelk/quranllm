@@ -1,5 +1,6 @@
 # QuranLLM
 [![CI](https://github.com/nobelk/quranllm/actions/workflows/ci.yml/badge.svg)](https://github.com/nobelk/quranllm/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/nobelk/quranllm/branch/main/graph/badge.svg?token=YOUR_TOKEN)](https://codecov.io/gh/nobelk/quranllm)
 [![Node.js 18+](https://img.shields.io/badge/node-18%2B-green.svg)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
