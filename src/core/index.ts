@@ -1,14 +1,11 @@
 import { SimpleDirectoryReader } from "@llamaindex/readers/directory";
-import {
-    VectorStoreIndex,
-    storageContextFromDefaults,
-} from "llamaindex";
-import { PineconeVectorStore } from '@llamaindex/pinecone';
+import { VectorStoreIndex, storageContextFromDefaults } from "llamaindex";
+import { PineconeVectorStore } from "@llamaindex/pinecone";
 import { QuranRAGConfig, IndexingOptions } from "../types/index.js";
 
 export async function loadAndIndexData(
   config: QuranRAGConfig,
-  options: IndexingOptions
+  options: IndexingOptions,
 ): Promise<VectorStoreIndex> {
   const vectorStore = new PineconeVectorStore({
     indexName: config.indexName,
@@ -19,7 +16,7 @@ export async function loadAndIndexData(
 
   if (options.shouldIndex) {
     const documents = await new SimpleDirectoryReader().loadData({
-      directoryPath: config.dataDirectory
+      directoryPath: config.dataDirectory,
     });
     const storageContext = await storageContextFromDefaults({ vectorStore });
     index = await VectorStoreIndex.fromDocuments(documents, { storageContext });

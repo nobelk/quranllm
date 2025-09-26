@@ -2,9 +2,7 @@ import { Settings } from "llamaindex";
 import { RAGAgentOptions } from "../types/index.js";
 
 export async function ragAgent(options: RAGAgentOptions): Promise<string> {
-  const context = options.nodes
-    .map(node => node.node.text)
-    .join('\n\n');
+  const context = options.nodes.map((node) => node.node.text).join("\n\n");
 
   const prompt = `Based on the following context from the Quran, please answer the user's question accurately and comprehensively.
     Context: ${context}

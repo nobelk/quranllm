@@ -1,6 +1,6 @@
 import { OpenAI, OpenAIEmbedding } from "@llamaindex/openai";
 import { Settings } from "llamaindex";
-import 'dotenv/config';
+import "dotenv/config";
 import { QuranRAGConfig } from "../types/index.js";
 
 export function getConfig(): QuranRAGConfig {
@@ -10,7 +10,7 @@ export function getConfig(): QuranRAGConfig {
     openaiApiKey: process.env.OPENAI_API_KEY as string,
     llmModel: process.env.LLM_MODEL || "gpt-4.1-nano",
     embeddingModel: process.env.EMBEDDING_MODEL || "text-embedding-ada-002",
-    dataDirectory: process.env.DATA_DIRECTORY || './data'
+    dataDirectory: process.env.DATA_DIRECTORY || "./data",
   };
 }
 
