@@ -1,10 +1,10 @@
-import { Settings } from "llamaindex";
+import { Settings, MetadataMode } from "llamaindex";
 import { RAGoptions } from "../types/index.js";
 
 export async function runRAGquery(options: RAGoptions): Promise<string> {
   const context = options.nodes
     .map((node, index) => {
-      const text = node.node.text;
+      const text = node.node.getContent(MetadataMode.NONE);
       const metadata = node.node.metadata || {};
       const score = node.score ? `(relevance: ${node.score.toFixed(3)})` : "";
 

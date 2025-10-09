@@ -1,7 +1,6 @@
-import { SimpleDirectoryReader } from "@llamaindex/readers/directory";
-import { VectorStoreIndex, storageContextFromDefaults } from "llamaindex";
+import { VectorStoreIndex } from "llamaindex";
 import { PineconeVectorStore } from "@llamaindex/pinecone";
-import { QuranRAGConfig, IndexingOptions } from "../types/index.js";
+import { QuranRAGConfig } from "../types/index.js";
 
 export async function loadIndex(
   config: QuranRAGConfig,

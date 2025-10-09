@@ -31,14 +31,13 @@ describe('Type Definitions', () => {
       expect(options.shouldIndex).toBe(true);
     });
 
-    it('should accept optional vectorStore', () => {
+    it('should work without optional vectorStore', () => {
       const options: IndexingOptions = {
-        shouldIndex: false,
-        vectorStore: {}
+        shouldIndex: false
       };
 
       expect(options.shouldIndex).toBe(false);
-      expect(options.vectorStore).toEqual({});
+      expect(options.vectorStore).toBeUndefined();
     });
   });
 

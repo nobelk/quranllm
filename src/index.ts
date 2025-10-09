@@ -10,7 +10,6 @@ export { getConfig, initializeSettings } from './utils/config.js';
 export type {
   QuranRAGConfig,
   QueryResult,
-  IndexingOptions,
   RAGoptions,
   QuranService
 } from './types';

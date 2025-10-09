@@ -1,4 +1,6 @@
 import { VectorStoreIndex } from "llamaindex";
+import { NodeWithScore } from "@llamaindex/core/schema";
+import { BaseVectorStore } from "@llamaindex/core/vector-store";
 
 export type LLMProvider = "openai" | "ollama";
 
@@ -16,16 +18,16 @@ export interface QuranRAGConfig {
 export interface QueryResult {
   query: string;
   answer: string;
-  nodes: any[];
+  nodes: NodeWithScore[];
 }
 
 export interface IndexingOptions {
   shouldIndex: boolean;
-  vectorStore?: any;
+  vectorStore?: BaseVectorStore;
 }
 
 export interface RAGoptions {
-  nodes: any[];
+  nodes: NodeWithScore[];
   query: string;
 }
 
