@@ -9,11 +9,12 @@ export async function runRAGquery(options: RAGoptions): Promise<string> {
       const score = node.score ? `(relevance: ${node.score.toFixed(3)})` : "";
 
       // Format metadata for better context
-      const metadataStr = Object.keys(metadata).length > 0
-        ? `[${Object.entries(metadata)
-            .map(([key, value]) => `${key}: ${value}`)
-            .join(", ")}]`
-        : "";
+      const metadataStr =
+        Object.keys(metadata).length > 0
+          ? `[${Object.entries(metadata)
+              .map(([key, value]) => `${key}: ${value}`)
+              .join(", ")}]`
+          : "";
 
       return `Source ${index + 1} ${metadataStr} ${score}\n${text}`;
     })
