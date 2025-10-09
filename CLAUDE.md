@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-QuranLLM is an LLM-powered Q&A service for Al-Quran using RAG (Retrieval-Augmented Generation). It combines LlamaIndex, Pinecone vector database, and OpenAI to provide intelligent answers about Quran content.
+QuranLLM is an LLM-powered Q&A service for Al-Quran using RAG (Retrieval-Augmented Generation). It combines LlamaIndex, Pinecone vector database, and OpenAI or Ollama to provide intelligent answers about Quran content.
 
 ## Development Commands
 
@@ -41,11 +41,12 @@ npm run clean
 ### Core Structure
 - **src/index.ts**: Main entry point, exports all public APIs
 - **src/core/**: Core RAG functionality
-  - `index.ts`: Data loading and indexing logic
+  - `index.ts`: Index loading logic
   - `query.ts`: Query processing pipeline
   - `rag.ts`: RAG agent implementation with custom prompting
 - **src/services/**: External service integrations
   - `openai.ts`: OpenAI LLM and embedding models
+  - `ollama.ts`: Ollama LLM and embedding models
   - `pinecone.ts`: Pinecone vector store operations
   - `reader.ts`: Document loading utilities
 - **src/utils/config.ts**: Configuration management with environment variables
@@ -54,9 +55,9 @@ npm run clean
 ### Key Design Patterns
 - **Two-stage RAG Pipeline**:
   1. `queryData()` retrieves relevant document chunks from Pinecone
-  2. `ragAgent()` generates answers using retrieved context
-- **Configuration-driven**: All settings managed through `QuranRAGConfig` interface
-- **Conditional Indexing**: `shouldIndex` flag controls whether to index new documents or use existing index
+  2. `runRAGquery()` generates answers using retrieved context
+- **Multi-provider Support**: Supports both OpenAI and Ollama as LLM providers
+- **Configuration-driven**: All settings managed through `QuranRAGConfig` interface with provider-based initialization
 
 ### Path Mapping
 Uses TypeScript path mapping with `@/` prefix:
@@ -67,18 +68,28 @@ Uses TypeScript path mapping with `@/` prefix:
 
 ## Environment Setup
 
-Required environment variables:
+Required environment variables depend on the provider:
+
+**For OpenAI (default)**:
 ```env
+PROVIDER=openai
 OPENAI_API_KEY=your-openai-api-key
+PINECONE_API_KEY=your-pinecone-api-key
+```
+
+**For Ollama**:
+```env
+PROVIDER=ollama
 PINECONE_API_KEY=your-pinecone-api-key
 ```
 
 Optional overrides:
 ```env
 INDEX_NAME=quranllm-spike
-LLM_MODEL=gpt-4.1-nano
-EMBEDDING_MODEL=text-embedding-ada-002
+LLM_MODEL=gpt-4.1-nano  # For OpenAI, or llama3:latest for Ollama
+EMBEDDING_MODEL=text-embedding-3-small  # For OpenAI, or nomic-embed-text for Ollama
 DATA_DIRECTORY=./data
+OLLAMA_BASE_URL=http://localhost:11434  # Only for Ollama provider
 ```
 
 ## Testing
@@ -94,6 +105,7 @@ Uses Jest with ESM support:
 Key dependencies:
 - **llamaindex**: Main RAG framework
 - **@llamaindex/openai**: OpenAI integration
+- **@llamaindex/ollama**: Ollama integration
 - **@llamaindex/pinecone**: Pinecone vector store
 - **@llamaindex/readers**: Document readers
 - **zod**: Runtime type validation

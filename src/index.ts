@@ -11,6 +11,6 @@ export type {
   QuranRAGConfig,
   QueryResult,
   IndexingOptions,
-  RAGAgentOptions,
+  RAGoptions,
   QuranService
 } from './types';

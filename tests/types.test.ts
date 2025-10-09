@@ -1,4 +1,4 @@
-import { QuranRAGConfig, IndexingOptions, RAGAgentOptions, QueryResult } from '../src/types/index';
+import { QuranRAGConfig, IndexingOptions, RAGoptions, QueryResult } from '../src/types/index';
 
 describe('Type Definitions', () => {
   describe('QuranRAGConfig', () => {
@@ -44,7 +44,7 @@ describe('Type Definitions', () => {
 
   describe('RAGAgentOptions', () => {
     it('should accept valid RAG agent options', () => {
-      const options: RAGAgentOptions = {
+      const options: RAGoptions = {
         nodes: [],
         query: 'test query'
       };

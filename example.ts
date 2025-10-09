@@ -18,6 +18,12 @@ async function main() {
     spinner = yoctoSpinner({text: "Answer: "}).start();
     answer = await queryData(index, query);
     spinner.success(answer);
+
+    query = "What is the ruling about debt?"
+    console.log("Question: " + query)
+    spinner = yoctoSpinner({text: "Answer: "}).start();
+    answer = await queryData(index, query);
+    spinner.success(answer);
 }
 
 

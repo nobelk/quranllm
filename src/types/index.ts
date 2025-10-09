@@ -24,7 +24,7 @@ export interface IndexingOptions {
   vectorStore?: any;
 }
 
-export interface RAGAgentOptions {
+export interface RAGoptions {
   nodes: any[];
   query: string;
 }

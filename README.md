@@ -26,7 +26,7 @@ npm install quranllm
 ### Basic Usage
 
 ```typescript
-import { loadAndIndexData, queryData, getConfig, initializeSettings } from 'quranllm';
+import { loadIndex, queryData, getConfig, initializeSettings } from 'quranllm';
 import yoctoSpinner from 'yocto-spinner';
 
 async function main() {
@@ -34,8 +34,8 @@ async function main() {
   const config = getConfig();
   initializeSettings(config);
 
-  // Load and index data (or connect to existing index)
-  const index = await loadAndIndexData(config, { shouldIndex: false });
+  // Load existing index from Pinecone
+  const index = await loadIndex(config);
 
   // Query the Quran with spinner for better UX
   let query = "What is the first verse of al-fatiha?";
@@ -69,7 +69,7 @@ PINECONE_API_KEY=your-pinecone-api-key
 # Optional overrides (these are defaults for OpenAI)
 INDEX_NAME=quranllm-spike
 LLM_MODEL=gpt-4.1-nano
-EMBEDDING_MODEL=text-embedding-ada-002
+EMBEDDING_MODEL=text-embedding-3-small
 DATA_DIRECTORY=./data
 ```
 
@@ -94,8 +94,7 @@ DATA_DIRECTORY=./data
 ```typescript
 import {
   QuranRAGConfig,
-  IndexingOptions,
-  loadAndIndexData,
+  loadIndex,
   queryData
 } from 'quranllm';
 
@@ -121,11 +120,8 @@ const configOllama: QuranRAGConfig = {
   ollamaBaseUrl: "http://localhost:11434"
 };
 
-const options: IndexingOptions = {
-  shouldIndex: true // Set to true to index new documents
-};
-
-const index = await loadAndIndexData(config, options);
+// Load existing index from Pinecone
+const index = await loadIndex(configOpenAI); // or configOllama
 const result = await queryData(index, "Which path do we seek according to al-fatiha?");
 ```
 
@@ -191,8 +187,8 @@ npm test
 
 ### Core Functions
 
-#### `loadAndIndexData(config: QuranRAGConfig, options: IndexingOptions): Promise<VectorStoreIndex>`
-Load and index Quran data or connect to existing Pinecone index.
+#### `loadIndex(config: QuranRAGConfig): Promise<VectorStoreIndex>`
+Load existing Pinecone index for querying.
 
 #### `queryData(index: VectorStoreIndex, query: string): Promise<string>`
 Query the indexed data and get an AI-powered answer about the Quran.
@@ -258,9 +254,9 @@ interface QueryResult {
 }
 ```
 
-#### `RAGAgentOptions`
+#### `RAGoptions`
 ```typescript
-interface RAGAgentOptions {
+interface RAGoptions {
   nodes: any[];               // Retrieved document nodes
   query: string;              // User query
 }
@@ -269,7 +265,7 @@ interface RAGAgentOptions {
 #### `QuranService`
 ```typescript
 interface QuranService {
-  loadAndIndexData(options: IndexingOptions): Promise<VectorStoreIndex>;
+  loadIndex(config: QuranRAGConfig): Promise<VectorStoreIndex>;
   queryData(index: VectorStoreIndex, query: string): Promise<string>;
 }
 ```

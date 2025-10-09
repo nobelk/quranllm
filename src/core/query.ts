@@ -1,5 +1,5 @@
 import { VectorStoreIndex } from "llamaindex";
-import { ragAgent } from "./rag.js";
+import { runRAGquery } from "./rag.js";
 
 export async function queryData(
   index: VectorStoreIndex,
@@ -8,6 +8,6 @@ export async function queryData(
   const retriever = index.asRetriever();
   const nodes = await retriever.retrieve(query);
 
-  const answer = await ragAgent({ nodes, query });
+  const answer = await runRAGquery({ nodes, query });
   return answer;
 }
