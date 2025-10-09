@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "@llamaindex/huggingface": "^0.1.30",
+    "@llamaindex/ollama": "^0.1.23",
     "@llamaindex/openai": "^0.4.20",
     "@llamaindex/pinecone": "^0.1.22",
     "@llamaindex/readers": "^3.1.21",

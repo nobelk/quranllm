@@ -4,6 +4,7 @@ import { QuranRAGConfig } from '../src/types/index';
 const mockConfig: QuranRAGConfig = {
   indexName: 'test-index',
   pineconeApiKey: 'test-pinecone-key',
+  provider: 'openai',
   openaiApiKey: 'test-openai-key',
   llmModel: 'gpt-3.5-turbo',
   embeddingModel: 'text-embedding-3-small',

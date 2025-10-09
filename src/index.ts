@@ -1,5 +1,5 @@
 // Main entry point for QuranLLM package
-export { loadAndIndexData } from './core/index.js';
+export { loadIndex } from './core/index.js';
 export { queryData } from './core/query.js';
 export { createOpenAILLM, createOpenAIEmbedding } from './services/openai.js';
 export { createPineconeVectorStore } from './services/pinecone.js';

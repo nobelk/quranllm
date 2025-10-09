@@ -6,6 +6,7 @@ describe('Type Definitions', () => {
       const config: QuranRAGConfig = {
         indexName: 'test-index',
         pineconeApiKey: 'test-key',
+        provider: 'openai',
         openaiApiKey: 'test-key',
         llmModel: 'gpt-3.5-turbo',
         embeddingModel: 'text-embedding-3-small',

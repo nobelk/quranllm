@@ -1,11 +1,11 @@
-import { loadAndIndexData, queryData, getConfig, initializeSettings } from './src/index.js';
+import { loadIndex, queryData, getConfig, initializeSettings } from './src/index.js';
 import yoctoSpinner from 'yocto-spinner';
 
 async function main() {
     const config = getConfig();
     initializeSettings(config);
 
-    const index = await loadAndIndexData(config, { shouldIndex: false });
+    const index = await loadIndex(config);
 
     let query = "What is the first verse of al-fatiha?";
     console.log("Question: " + query)

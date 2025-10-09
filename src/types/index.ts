@@ -1,12 +1,16 @@
 import { VectorStoreIndex } from "llamaindex";
 
+export type LLMProvider = "openai" | "ollama";
+
 export interface QuranRAGConfig {
   indexName: string;
   pineconeApiKey: string;
-  openaiApiKey: string;
+  provider: LLMProvider;
+  openaiApiKey?: string;
   llmModel: string;
   embeddingModel: string;
   dataDirectory: string;
+  ollamaBaseUrl?: string;
 }
 
 export interface QueryResult {
